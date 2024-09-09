@@ -1,13 +1,32 @@
-import { Link } from 'react-router-dom';
-import styles from './styles.module.scss';
+import { useContext } from 'react';
+import { TemaContext } from '../../context/ColorContext';
+import { LinkClaro, LinkEscuro, NavBarContainer } from './styles';
+import lua from "/lua.png"
+import sol from "/sol.png"
+
 function NavBar() {
-    return (
-        <>
-            <div className={styles.container}>
-                <Link className={styles.Link} to={'/'}>Menu</Link>
-                <Link className={styles.Link} to={'/About'}>About</Link>
-            </div>
-        </>
-    );
+    const tema = useContext(TemaContext)
+
+    if (tema.tema == "claro")
+    {    return (
+            <>
+                <NavBarContainer >
+                    <LinkClaro to={'/'}>Menu</LinkClaro>
+                    <LinkClaro to={'/About'}>About</LinkClaro>
+                    <img src={lua}><button/></img>
+                </NavBarContainer>
+            </>
+        );
+    }else{
+        return (
+            <>
+                <NavBarContainer >
+                    <LinkEscuro to={'/'}>Menu</LinkEscuro>
+                    <LinkEscuro to={'/About'}>About</LinkEscuro>
+                    <img src={sol}><button/></img>
+                </NavBarContainer>
+            </>
+        );
+    }
 }
 export default NavBar
